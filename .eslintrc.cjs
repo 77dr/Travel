@@ -4,5 +4,8 @@ module.exports = {
   "extends": [
     "plugin:vue/essential",
     "eslint:recommended"
-  ]
+  ],
+  "rules": {
+    "vue/comment-directive": "off"
+  }
 }
