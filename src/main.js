@@ -9,10 +9,12 @@ import 'styles/border.css'
 import 'styles/iconfont.css'
 
 import 'vant/lib/index.css'
-import { Swipe, SwipeItem } from 'vant'
+import { Swipe, SwipeItem, Grid, GridItem } from 'vant'
 
 Vue.use(Swipe)
 Vue.use(SwipeItem)
+Vue.use(Grid)
+Vue.use(GridItem)
 
 new Vue({
   router,
