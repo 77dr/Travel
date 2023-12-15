@@ -1,12 +1,13 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, toRefs } from 'vue'
 const props = defineProps({
   'list': Array
 })
-const list = props.list
+
+const {list} = toRefs(props)
 const pages = computed(() => {
   const pages = []
-  list.forEach((item, index) => {
+  list.value.forEach((item, index) => {
     const page = Math.floor(index / 8)
     if (!pages[page]) {
       pages[page] = []
