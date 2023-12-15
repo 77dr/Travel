@@ -6,6 +6,16 @@ import vue2 from '@vitejs/plugin-vue2'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:5173",
+        changeOrigin: true,
+        secure: false,
+        rewrite: path => path.replace(/^\/api/, '/static/mock')
+      },
+    },
+  },
   plugins: [
     vue2(),
     legacy({

@@ -1,9 +1,9 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, toRefs } from 'vue'
 const props = defineProps({
   'list': Array
 })
-const list = props.list
+const {list} = toRefs(props)
 const showSwiper = computed(() => {
   return props.list.length
 })

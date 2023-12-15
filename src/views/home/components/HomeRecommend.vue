@@ -1,8 +1,9 @@
 <script setup>
+import { toRefs } from 'vue'
 const props = defineProps({
   'list': Array
 })
-const list = props.list
+const {list} = toRefs(props)
 </script>
 
 <template>
