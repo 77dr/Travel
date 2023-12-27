@@ -7,7 +7,6 @@ const props = defineProps({
   cities: Object,
   letter: String
 })
-
 const { proxy } = getCurrentInstance()
 const $router = proxy.$router
 const currentCity = useCityStore()
@@ -16,7 +15,6 @@ const handleCityClick= city => {
   $router.push('/')
 }
 const { hot, cities, letter} = toRefs(props)
-
 const refArr = []
 const setItemRef = el => {
   if (el) {
@@ -40,19 +38,15 @@ watch(letter, (newX) => {
     scroll.value.scrollToElement(element)
   }
 })
-
 const wrapper = ref(null)
 let scroll = ref(null)
-
 onMounted(() => {
   scroll.value = new BScroll(wrapper.value, {
     mouseWheel: true,
     click: true
   })
 })
-
 onUpdated(() => {
-  console.log(`the component is now updated.`)
   scroll.value.refresh()
 })
 </script>
@@ -104,7 +98,6 @@ onUpdated(() => {
 </template>
 
 <style lang="stylus" scoped>
-  // @import '~styles/varibles.styl'
   .border-topbottom
     &:before
       border-color: #ccc

@@ -13,18 +13,14 @@
 
 
 <style lang="stylus" scoped>
-  // @import '~styles/varibles.styl'
   .header
     position: relative
     overflow: hidden
-    // height: $headerHeight
-    // line-height: $headerHeight
-    height: .86rem
-    line-height: .86rem
+    height: $headerHeight
+    line-height: $headerHeight
     text-align: center
     color: #fff
-    background: #00bcd4
-    // background: $bgColor
+    background: $bgColor
     font-size: .32rem
     .header-back
       position: absolute

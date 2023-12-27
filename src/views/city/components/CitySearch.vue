@@ -5,7 +5,6 @@ import { computed, toRefs, ref, watch, onMounted, onUpdated,getCurrentInstance }
 const props = defineProps({
   'cities': Object
 })
-
 const { cities } = toRefs(props)
 const keyword = ref('')
 const timer = ref(null)
@@ -40,19 +39,15 @@ const handleCityClick = city => {
   currentCity.changeCity(city)
   $router.push('/')
 }
-
 const search = ref(null)
 let scroll = ref(null)
-
 onMounted(() => {
-  console.log(`the component is now mounted.`)
   scroll.value = new Bscroll(search.value, {
     mouseWheel: true,
     click: true
   })
 })
 onUpdated(() => {
-  console.log(`the component is now updated.`)
   scroll.value.refresh()
 })
 </script>
@@ -93,12 +88,10 @@ onUpdated(() => {
 </template>
 
 <style lang="stylus" scoped>
-  // @import '~styles/varibles.styl'
   .search
     height: .72rem
     padding: 0 .1rem
-    // background: $bgColor
-    background: #00bcd4
+    background: $bgColor
     .search-input
       box-sizing: border-box
       width: 100%

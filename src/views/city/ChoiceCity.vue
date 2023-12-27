@@ -26,7 +26,6 @@ const handleLetterChange = letter => {
   data.letter = letter
 }
 onMounted(() => {
-  console.log(`the component is now mounted.`)
   getCityInfo()
 })
 </script>
@@ -39,11 +38,11 @@ onMounted(() => {
       :cities="data.cities"
       :hot="data.hotCities"
       :letter="data.letter"
-    ></CityList>
+    />
     <CityAlphabet
       :cities="data.cities"
       @change="handleLetterChange"
-    ></CityAlphabet>
+    />
   </div>
 </template>
 

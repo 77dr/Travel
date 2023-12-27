@@ -15,15 +15,11 @@ const letters = computed(() => {
 let touchStatus = ref(false)
 let startY = ref(0)
 let timer = ref(null)
-
-
 const A = ref(null)
 onUpdated(() => {
   startY.value = A.value[0].offsetTop
 })
-
 const emits = defineEmits(['change'])
-
 function handleLetterClick (e) {
   emits('change', e.target.innerText)
 }
@@ -45,7 +41,6 @@ function handleTouchMove (e) {
     }, 8)
   }
 }
-
 function handleTouchEnd () {
   touchStatus.value = false
 }
@@ -70,7 +65,6 @@ function handleTouchEnd () {
 </template>
 
 <style lang="stylus" scoped>
-  // @import '~styles/varibles.styl'
   .list
     display: flex
     flex-direction: column
@@ -83,5 +77,5 @@ function handleTouchEnd () {
     .item
       line-height: .4rem
       text-align: center
-      // color: $bgColor
+      color: $bgColor
 </style>
