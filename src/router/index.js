@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 
 import HomePage from '../views/home/HomePage.vue'
+import ChoiceCity from '../views/city/ChoiceCity.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,10 @@ const router = new VueRouter({
       name: 'home',
       // component: HomeView
       component: HomePage
+    }, {
+      path: '/city',
+      name: 'city',
+      component: ChoiceCity
     },
     // {
     //   path: '/about',

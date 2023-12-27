@@ -5,15 +5,17 @@ import HomeIcons from './components/HomeIcons.vue'
 import HomeRecommend from './components/HomeRecommend.vue'
 import HomeWeekend from './components/HomeWeekend.vue'
 import axios from 'axios'
-import { reactive, onMounted } from 'vue'
+import { useCityStore } from '@/stores/city'
+import { ref, reactive, onMounted, onActivated } from 'vue'
 const data = reactive({
   swiperList: [],
   iconList: [],
   recommendList: [],
   weekendList: []
 })
+const lastCity = ref('')
 let getHomeInfo = () => {
-  axios.get('/api/index.json')
+  axios.get('/api/index.json?city=' + useCityStore().name)
     .then(getHomeInfoSucc)
 }
 const getHomeInfoSucc = res => {
@@ -27,8 +29,14 @@ const getHomeInfoSucc = res => {
   }
 }
 onMounted(() => {
-  console.log(`the component is now mounted.`)
+  lastCity.value = useCityStore().name
   getHomeInfo()
+})
+onActivated(() => {
+  if (lastCity.value !== useCityStore().name) {
+    lastCity.value = useCityStore().name
+    getHomeInfo()
+  }
 })
 </script>
 
