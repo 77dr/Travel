@@ -16,8 +16,9 @@
         </nav>
       </div>
     </header> -->
-
+  <keep-alive>
     <router-view />
+  </keep-alive>
   </div>
 </template>
 

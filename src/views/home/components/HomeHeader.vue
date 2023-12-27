@@ -1,5 +1,6 @@
 <script setup>
-
+import { useCityStore } from '@/stores/city'
+const city = useCityStore()
 </script>
 
 <template>
@@ -10,10 +11,12 @@
     <div class="header-input">
       <span class="iconfont">&#xeafe;</span>
     </div>
-    <div class="header-right">
-      城市
-      <span class="iconfont arrow-icon">&#xe621;</span>
-    </div>
+    <router-link to='/city'>
+      <div class="header-right">
+        {{city.name}}
+        <span class="iconfont arrow-icon">&#xe621;</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -23,7 +26,8 @@
   // @import '~styles/variable.styl'
   .header
     display: flex
-    line-height: 0.86rem
+    line-height: .86rem
+    // line-height: $headerHeight
     // background: $bgColor
     background: #00bcd4
     color: #fff
@@ -44,9 +48,11 @@
       border-radius: .1rem
       color: #ccc
     .header-right
-      width: 1.24rem
+      min-width: 1.04rem
+      padding: 0 .1rem
       float: right
       text-align: center
+      color: #fff
       .arrow-icon
         margin-left: -.04rem
         font-size: .24rem
