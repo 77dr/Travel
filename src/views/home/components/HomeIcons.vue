@@ -3,7 +3,6 @@ import { computed, toRefs } from 'vue'
 const props = defineProps({
   'list': Array
 })
-
 const {list} = toRefs(props)
 const pages = computed(() => {
   const pages = []
@@ -71,9 +70,6 @@ const pages = computed(() => {
 </template>
 
 <style lang="stylus" scoped>
-  // FIXME:  引入报错
-  // @import '~styles/varibles.styl'
-  // @import '~styles/mixins.styl'
   // .icons >>> .swiper-container
   //   height: 0
   //   padding-bottom: 50%
@@ -109,6 +105,5 @@ const pages = computed(() => {
         height: .44rem
         line-height: .44rem
         text-align: center
-        color: #333
-        // color: $darkTextColor
+        color: $darkTextColor
 </style>

@@ -29,8 +29,6 @@ const {list} = toRefs(props)
 </template>
 
 <style lang="stylus" scoped>
-  // FIXME:  引入报错
-  // @import '~styles/mixins.styl'
   .title
     margin-top: .2rem
     line-height: .8rem
@@ -51,17 +49,11 @@ const {list} = toRefs(props)
       .item-title
         line-height: .54rem
         font-size: .32rem
-        // ellipsis()
-        overflow: hidden
-        white-space: nowrap
-        text-overflow: ellipsis
+        ellipsis()
       .item-desc
         line-height: .4rem
         color: #ccc
-        // ellipsis()
-        overflow: hidden
-        white-space: nowrap
-        text-overflow: ellipsis
+        ellipsis()
       .item-button
         line-height: .44rem
         margin-top: .16rem

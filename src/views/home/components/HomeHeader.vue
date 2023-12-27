@@ -21,15 +21,12 @@ const city = useCityStore()
 </template>
 
 <style lang="stylus" scoped>
-  // FIXME:  引入报错
-  // @import '../../../assets/styles/variable.styl'
-  // @import '~styles/variable.styl'
   .header
     display: flex
-    line-height: .86rem
-    // line-height: $headerHeight
-    // background: $bgColor
-    background: #00bcd4
+    line-height: $headerHeight
+    background: $bgColor
+    line-height: 0.86rem
+    background: $bgColor
     color: #fff
     .header-left
       width: .64rem
