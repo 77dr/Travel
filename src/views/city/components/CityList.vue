@@ -1,7 +1,7 @@
 <script setup>
 import BScroll from 'better-scroll'
 import { useCityStore } from '@/stores/city'
-import { ref, computed, toRefs, watch, onMounted, onUpdated, getCurrentInstance } from 'vue'
+import { ref, computed, toRefs, watch, onMounted, onActivated, onUpdated, getCurrentInstance } from 'vue'
 const props = defineProps({
   hot: Array,
   cities: Object,
@@ -45,6 +45,9 @@ onMounted(() => {
     mouseWheel: true,
     click: true
   })
+})
+onActivated(() => {
+  scroll.value.refresh()
 })
 onUpdated(() => {
   scroll.value.refresh()
