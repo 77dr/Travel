@@ -10,7 +10,7 @@ const data = reactive({
   hotCities: [],
   letter: ''
 })
-let getCityInfo =  () => {
+let getCityInfo = () => {
   axios.get('/api/city.json')
     .then(handleGetCityInfoSucc)
 }
