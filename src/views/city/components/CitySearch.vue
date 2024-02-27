@@ -7,20 +7,21 @@ const props = defineProps({
 })
 const { cities } = toRefs(props)
 const keyword = ref('')
-const timer = ref(null)
+let timer = null
 let list = ref([])
 const hasNoData = computed(() => {
   return !list.value.length
 })
 watch(keyword, (newX) => {
-  if (timer.value) {
-    clearTimeout(timer.value)
+  if (timer) {
+    clearTimeout(timer)
+    timer = null
   }
   if (!newX) {
     list.value = []
     return
   }
-  timer.value = setTimeout(() => {
+  timer = setTimeout(() => {
     const result = []
     for (let i in cities.value) {
       cities.value[i].forEach((value) => {
@@ -40,9 +41,9 @@ const handleCityClick = city => {
   $router.push('/')
 }
 const search = ref(null)
-let scroll = ref(null)
+let scroll = null
 onMounted(() => {
-  scroll.value = new Bscroll(search.value, {
+  scroll = new Bscroll(search.value, {
     mouseWheel: true,
     click: true
   })

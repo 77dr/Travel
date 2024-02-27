@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
   <div class="header">
     城市选择
@@ -10,7 +6,6 @@
     </router-link>
   </div>
 </template>
-
 
 <style lang="stylus" scoped>
   .header

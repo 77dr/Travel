@@ -35,22 +35,22 @@ const findIndex = letter => {
 watch(letter, (newX) => {
   if (newX) {
     const element = refArr[findIndex(newX)]
-    scroll.value.scrollToElement(element)
+    scroll.scrollToElement(element)
   }
 })
 const wrapper = ref(null)
-let scroll = ref(null)
+let scroll = null
 onMounted(() => {
-  scroll.value = new BScroll(wrapper.value, {
+  scroll = new BScroll(wrapper.value, {
     mouseWheel: true,
     click: true
   })
 })
 onActivated(() => {
-  scroll.value.refresh()
+  scroll.refresh()
 })
 onUpdated(() => {
-  scroll.value.refresh()
+  scroll.refresh()
 })
 </script>
 
