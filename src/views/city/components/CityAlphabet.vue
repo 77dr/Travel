@@ -1,6 +1,5 @@
 <script setup>
 import { ref, computed, toRefs, onUpdated, defineEmits } from 'vue'
-
 const props = defineProps({
   cities: Object
 })
@@ -12,29 +11,30 @@ const letters = computed(() => {
   }
   return letters
 })
-let touchStatus = ref(false)
-let startY = ref(0)
-let timer = ref(null)
+let touchStatus = false
+let startY = 0
+let timer = null
 const A = ref(null)
 onUpdated(() => {
-  startY.value = A.value[0].offsetTop
+  startY = A.value[0].offsetTop
 })
 const emits = defineEmits(['change'])
 function handleLetterClick (e) {
   emits('change', e.target.innerText)
 }
 function handleTouchStart () {
-  touchStatus.value = true
+  touchStatus = true
 }
 function handleTouchMove (e) {
-  if (touchStatus.value) {
+  if (touchStatus) {
     // 节流
-    if (timer.value) {
-      clearTimeout(timer.value)
+    if (timer) {
+      clearTimeout(timer)
+      timer = null
     }
-    timer.value = setTimeout(() => {
+    timer = setTimeout(() => {
       const touchY = e.touches[0].clientY - 79
-      const index = Math.floor((touchY - startY.value) / 20)
+      const index = Math.floor((touchY - startY) / 20)
       if (index >= 0 && index < letters.value.length) {
         emits('change', letters.value[index])
       }
@@ -42,7 +42,7 @@ function handleTouchMove (e) {
   }
 }
 function handleTouchEnd () {
-  touchStatus.value = false
+  touchStatus = false
 }
 </script>
 
