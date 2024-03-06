@@ -2,9 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 
-import HomePage from '../views/home/HomePage.vue'
-import ChoiceCity from '../views/city/ChoiceCity.vue'
-import Detail from '../views/detail/HomeRecommendDetail.vue'
+// import HomePage from '../views/home/HomePage.vue'
+// import ChoiceCity from '../views/city/ChoiceCity.vue'
+// import Detail from '../views/detail/HomeRecommendDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -16,15 +16,15 @@ const router = new VueRouter({
       path: '/',
       name: 'home',
       // component: HomeView
-      component: HomePage
+      component: () => import('../views/home/HomePage.vue')
     }, {
       path: '/city',
       name: 'city',
-      component: ChoiceCity
+      component: () => import('../views/city/ChoiceCity.vue')
     }, {
       path: '/detail/:id',
       name: 'Detail',
-      component: Detail
+      component: () => import('../views/detail/HomeRecommendDetail.vue')
     }
     // {
     //   path: '/about',
