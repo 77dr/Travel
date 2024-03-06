@@ -16,7 +16,7 @@
         </nav>
       </div>
     </header> -->
-  <keep-alive>
+  <keep-alive exclude="HomeRecommendDetail">
     <router-view />
   </keep-alive>
   </div>

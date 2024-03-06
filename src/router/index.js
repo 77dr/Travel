@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 
 import HomePage from '../views/home/HomePage.vue'
 import ChoiceCity from '../views/city/ChoiceCity.vue'
+import Detail from '../views/detail/HomeRecommendDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +21,11 @@ const router = new VueRouter({
       path: '/city',
       name: 'city',
       component: ChoiceCity
-    },
+    }, {
+      path: '/detail/:id',
+      name: 'Detail',
+      component: Detail
+    }
     // {
     //   path: '/about',
     //   name: 'about',
@@ -29,7 +34,11 @@ const router = new VueRouter({
     //   // which is lazy-loaded when the route is visited.
     //   component: () => import('../views/AboutView.vue')
     // }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    console.log(to, from, savedPosition)
+    return { x: 0, y: 0 }
+  }
 })
 
 export default router
