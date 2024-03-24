@@ -1,16 +1,14 @@
 <script setup>
-import { toRefs } from 'vue'
 const props = defineProps({
   'list': Array
 })
-const { list } = toRefs(props)
 </script>
 
 <template>
   <div>
     <div
       class="item"
-      v-for="(item, index) of list"
+      v-for="(item, index) of props.list"
       :key="index"
     >
       <div class="item-title border-bottom">

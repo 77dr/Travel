@@ -1,17 +1,26 @@
 <script setup>
+import {
+  computed,
+  ref,
+  watch,
+  onMounted,
+  onUpdated,
+  getCurrentInstance
+} from 'vue'
+
 import Bscroll from 'better-scroll'
 import { useCityStore } from '@/stores/city'
-import { computed, toRefs, ref, watch, onMounted, onUpdated,getCurrentInstance } from 'vue'
+
 const props = defineProps({
   'cities': Object
 })
-const { cities } = toRefs(props)
+
 const keyword = ref('')
+const list = ref([])
 let timer = null
-let list = ref([])
-const hasNoData = computed(() => {
-  return !list.value.length
-})
+
+const hasNoData = computed(() => !list.value.length)
+
 watch(keyword, (newX) => {
   if (timer) {
     clearTimeout(timer)
@@ -23,8 +32,8 @@ watch(keyword, (newX) => {
   }
   timer = setTimeout(() => {
     const result = []
-    for (let i in cities.value) {
-      cities.value[i].forEach((value) => {
+    for (let i in props.cities) {
+      props.cities[i].forEach((value) => {
         if (value.spell.indexOf(newX) > -1 || value.name.indexOf(newX) > -1) {
           result.push(value)
         }
@@ -33,23 +42,29 @@ watch(keyword, (newX) => {
     list.value = result
   }, 100)
 })
+
 const { proxy } = getCurrentInstance()
 const $router = proxy.$router
+
 const currentCity = useCityStore()
+
 const handleCityClick = city => {
   currentCity.changeCity(city)
   $router.push('/')
 }
+
 const search = ref(null)
 let scroll = null
+
 onMounted(() => {
   scroll = new Bscroll(search.value, {
     mouseWheel: true,
     click: true
   })
 })
+
 onUpdated(() => {
-  scroll.value.refresh()
+  scroll.refresh()
 })
 </script>
 

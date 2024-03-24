@@ -1,9 +1,7 @@
 <script setup>
-import { toRefs } from 'vue'
 const props = defineProps({
   'list': Array
 })
-const {list} = toRefs(props)
 </script>
 
 <template>
@@ -11,7 +9,7 @@ const {list} = toRefs(props)
     <div class="title">热销推荐</div>
     <ul>
       <router-link
-        v-for="item in list"
+        v-for="item in props.list"
         :key="item.id"
         :to="`/detail/${item.id}`"
         tag="li"

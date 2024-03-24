@@ -1,9 +1,11 @@
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
+
 const showAbs = ref(true)
 const opacityStyle = reactive({
     opacity: 0
 })
+
 function handleScroll () {
   const top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
   if (top > 60) {
@@ -15,9 +17,11 @@ function handleScroll () {
     showAbs.value = true
   }
 }
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
 })
+
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })

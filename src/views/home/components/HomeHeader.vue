@@ -1,5 +1,6 @@
 <script setup>
 import { useCityStore } from '@/stores/city'
+
 const city = useCityStore()
 </script>
 
@@ -13,7 +14,7 @@ const city = useCityStore()
     </div>
     <router-link to='/city'>
       <div class="header-right">
-        {{city.name}}
+        {{ city.name}}
         <span class="iconfont arrow-icon">&#xe64a;</span>
       </div>
     </router-link>

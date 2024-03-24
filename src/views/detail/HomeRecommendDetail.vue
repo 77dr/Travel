@@ -1,23 +1,23 @@
 <script setup>
 import { ref, onMounted, getCurrentInstance } from 'vue'
+import axios from 'axios'
+
 // import { useRoute } from 'vue-router'
 import DetailBanner from './components/DetailBanner.vue'
 import DetailHeader from './components/DetailHeader.vue'
 import DetailList from './components/DetailList.vue'
-import axios from 'axios'
 
 const sightName = ref('')
 const bannerImg = ref('')
 const gallaryImgs = ref([])
 const list = ref([])
 
-
 const { proxy } = getCurrentInstance()
 // const route = useRoute()
 
 async function getDetailInfo () {
-  console.log('[ proxy ] >', proxy.$route.params.id)
   let res = await axios.get('/api/detail.json', {
+    // params: { id: route.params.id }
     params: { id: proxy.$route.params.id }
   })
   res = res.data
@@ -29,6 +29,7 @@ async function getDetailInfo () {
     list.value = data.categoryList
   }
 }
+
 onMounted(() => {
   getDetailInfo()
 })

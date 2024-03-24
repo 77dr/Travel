@@ -1,30 +1,42 @@
 <script setup>
-import { ref, computed, toRefs, onUpdated, defineEmits } from 'vue'
+import { ref, computed, onUpdated, defineEmits } from 'vue'
+
 const props = defineProps({
   cities: Object
 })
-const { cities } = toRefs(props)
+
 const letters = computed(() => {
   const letters = []
-  for (let i in cities.value) {
+  for (let i in props.cities) {
     letters.push(i)
   }
   return letters
 })
+
 let touchStatus = false
 let startY = 0
 let timer = null
-const A = ref(null)
+
+// const A = ref(null)
+const elemS = ref([])
 onUpdated(() => {
-  startY = A.value[0].offsetTop
+  // startY = A.value[0].offsetTop
+  startY = elemS.value['A'].offsetTop
 })
+
 const emits = defineEmits(['change'])
 function handleLetterClick (e) {
   emits('change', e.target.innerText)
 }
+
 function handleTouchStart () {
   touchStatus = true
 }
+
+function handleTouchEnd () {
+  touchStatus = false
+}
+
 function handleTouchMove (e) {
   if (touchStatus) {
     // 节流
@@ -41,18 +53,16 @@ function handleTouchMove (e) {
     }, 8)
   }
 }
-function handleTouchEnd () {
-  touchStatus = false
-}
 </script>
 
 <template>
   <ul class="list">
+    <!-- :ref="item" -->
     <li
       class="item"
       v-for="item of letters"
       :key="item"
-      :ref="item"
+      :ref="elem => elemS[item] = elem"
       @touchstart="handleTouchStart"
       @touchmove="handleTouchMove"
       @touchend="handleTouchEnd"

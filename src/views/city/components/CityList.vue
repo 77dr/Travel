@@ -1,54 +1,78 @@
 <script setup>
+import {
+  ref,
+  computed,
+  watch,
+  onMounted,
+  onActivated,
+  onUpdated,
+  getCurrentInstance
+} from 'vue'
+
 import BScroll from 'better-scroll'
 import { useCityStore } from '@/stores/city'
-import { ref, computed, toRefs, watch, onMounted, onActivated, onUpdated, getCurrentInstance } from 'vue'
+// import { useRouter } from 'vue-router'
+
 const props = defineProps({
   hot: Array,
   cities: Object,
   letter: String
 })
+
 const { proxy } = getCurrentInstance()
 const $router = proxy.$router
+
+// const router = useRouter()
+
 const currentCity = useCityStore()
+
 const handleCityClick= city => {
   currentCity.changeCity(city)
   $router.push('/')
+  // router.push('/')
 }
-const { hot, cities, letter} = toRefs(props)
+
 const refArr = []
 const setItemRef = el => {
   if (el) {
     refArr.push(el)
   }
 }
+
 const letters = computed(() => {
-  // return Object.keys(cities.value)
+  // return Object.keys(props.cities)
   const letters = []
-  for (let i in cities.value) {
+  for (let i in props.cities) {
     letters.push(i)
   }
   return letters
 })
+
 const findIndex = letter => {
   return letters.value.findIndex(item => item === letter)
 }
-watch(letter, (newX) => {
+
+watch(() => props.letter, (newX) => {
   if (newX) {
     const element = refArr[findIndex(newX)]
     scroll.scrollToElement(element)
   }
 })
+
 const wrapper = ref(null)
 let scroll = null
+
 onMounted(() => {
   scroll = new BScroll(wrapper.value, {
     mouseWheel: true,
     click: true
   })
 })
+
 onActivated(() => {
   scroll.refresh()
 })
+
 onUpdated(() => {
   scroll.refresh()
 })
@@ -70,7 +94,7 @@ onUpdated(() => {
         <div class="button-list">
           <div
             class="button-wrapper"
-            v-for="item of hot"
+            v-for="item of props.hot"
             :key="item.id"
             @click="handleCityClick(item.name)"
           >
@@ -80,7 +104,7 @@ onUpdated(() => {
       </div>
       <div
         class="area"
-        v-for="(item, key) of cities"
+        v-for="(item, key) of props.cities"
         :key="key"
         :ref="setItemRef"
       >

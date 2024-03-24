@@ -3,31 +3,13 @@ import CityHeader from './components/CityHeader.vue'
 import CitySearch from './components/CitySearch.vue'
 import CityList from './components/CityList.vue'
 import CityAlphabet from './components/CityAlphabet.vue'
-import axios from 'axios'
-import { reactive, onMounted } from 'vue'
-const data = reactive({
-  cities: {},
-  hotCities: [],
-  letter: ''
-})
-let getCityInfo = () => {
-  axios.get('/api/city.json')
-    .then(handleGetCityInfoSucc)
-}
-const handleGetCityInfoSucc = (res) => {
-  res = res.data
-  if (res.ret && res.data) {
-    const result = res.data
-    data.cities = result.cities
-    data.hotCities = result.hotCities
-  }
-}
-const handleLetterChange = letter => {
-  data.letter = letter
-}
-onMounted(() => {
-  getCityInfo()
-})
+
+import useLetterLogic from './hooks/useLetterLogic'
+import useCityLogic from './hooks/useCityLogic'
+
+const { data } = useCityLogic()
+const { letter, handleLetterChange } = useLetterLogic()
+
 </script>
 
 <template>
@@ -37,7 +19,7 @@ onMounted(() => {
     <CityList
       :cities="data.cities"
       :hot="data.hotCities"
-      :letter="data.letter"
+      :letter="letter"
     />
     <CityAlphabet
       :cities="data.cities"

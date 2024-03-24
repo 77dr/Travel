@@ -1,17 +1,21 @@
 <script setup>
-import { ref, toRefs } from 'vue'
+import { ref } from 'vue'
+
 import CommonGallary from '@/components/gallary/CommonGallary.vue'
 import FadeAnimation from '@/components/fade/FadeAnimation.vue'
+
 const props = defineProps({
   'sightName': String,
   'bannerImg': String,
   'bannerImgs': Array
 })
-const { sightName, bannerImg, bannerImgs } = toRefs(props)
+
 const showGallary = ref(false)
+
 function handleBannerClick() {
   showGallary.value = true
 }
+
 function handleGallaryClose () {
   showGallary.value = false
 }
@@ -20,20 +24,20 @@ function handleGallaryClose () {
 <template>
   <div>
     <div class="banner" @click="handleBannerClick">
-      <img class="banner-img" :src="bannerImg" />
+      <img class="banner-img" :src="props.bannerImg" />
       <div class="banner-info">
         <div class="banner-tittle">
-          {{ sightName }}
+          {{ props.sightName }}
         </div>
         <div class="banner-number">
           <span class="iconfont banner-icon">&#xe692;</span>
-          {{ bannerImgs.length }}
+          {{ props.bannerImgs.length }}
         </div>
       </div>
     </div>
     <FadeAnimation>
       <CommonGallary
-        :imgs="bannerImgs"
+        :imgs="props.bannerImgs"
         v-if="showGallary"
         @close="handleGallaryClose"
       ></CommonGallary>

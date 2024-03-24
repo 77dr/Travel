@@ -1,9 +1,7 @@
 <script setup>
-import { toRefs } from 'vue'
 const props = defineProps({
   'list': Array
 })
-const {list} = toRefs(props)
 </script>
 
 <template>
@@ -11,18 +9,21 @@ const {list} = toRefs(props)
     <div class="title">周末去哪儿</div>
     <ul>
       <router-link
-        v-for="item in list"
+        v-for="item in props.list"
         :key="item.id"
         :to="`/detail/${item.id}`"
-        tag="li"
+        custom
+        v-slot="{ navigate }"
       >
-        <div class="item-img-wrapper">
-          <img :src="item.imgUrl" class="item-img" />
-        </div>
-        <div class="item-info">
-          <p class="item-title">{{item.title}}</p>
-          <p class="item-desc">{{item.desc}}</p>
-        </div>
+        <li @click="navigate" @keypress.enter="navigate" role="link">
+          <div class="item-img-wrapper">
+            <img :src="item.imgUrl" class="item-img" />
+          </div>
+          <div class="item-info">
+            <p class="item-title">{{item.title}}</p>
+            <p class="item-desc">{{item.desc}}</p>
+          </div>
+        </li>
       </router-link>
     </ul>
   </div>

@@ -1,12 +1,11 @@
 <script setup>
-import { computed, toRefs } from 'vue'
+import { computed } from 'vue'
+
 const props = defineProps({
   'list': Array
 })
-const {list} = toRefs(props)
-const showSwiper = computed(() => {
-  return props.list.length
-})
+
+const showSwiper = computed(() => props.list.length)
 </script>
 
 <template>
@@ -16,7 +15,7 @@ const showSwiper = computed(() => {
       indicator-color="#fff"
     >
       <van-swipe-item
-        v-for="item of list"
+        v-for="item of props.list"
         :key="item.id"
       >
         <img
