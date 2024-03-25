@@ -9,7 +9,6 @@ import useCityLogic from './hooks/useCityLogic'
 
 const { data } = useCityLogic()
 const { letter, handleLetterChange } = useLetterLogic()
-
 </script>
 
 <template>
