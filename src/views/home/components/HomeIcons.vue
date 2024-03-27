@@ -1,21 +1,11 @@
 <script setup>
-import { computed } from 'vue'
+import pageSwipe from '../hooks/pageSwipe.js'
 
 const props = defineProps({
   'list': Array
 })
 
-const pages = computed(() => {
-  const pages = []
-  props.list.forEach((item, index) => {
-    const page = Math.floor(index / 8)
-    if (!pages[page]) {
-      pages[page] = []
-    }
-    pages[page].push(item)
-  })
-  return pages
-})
+const { pages } = pageSwipe(props)
 </script>
 
 <template>
